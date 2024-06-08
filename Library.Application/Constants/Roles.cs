@@ -2,7 +2,7 @@
 
 public static class Roles
 {
-    public const string USER = "USER";
-    public const string LIBRARIAN = "LIBRARIAN";
-    public const string AUTHOR = "AUTHOR";
+    public const string User = "USER";
+    public const string Librarian = "LIBRARIAN";
+    public const string Author = "AUTHOR";
 }

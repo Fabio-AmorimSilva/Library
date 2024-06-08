@@ -1,16 +1,14 @@
-﻿namespace Library.Application.Queries.Author.ListAuthors;
+﻿using Library.Application.ResponseDtos.Authors;
 
-public class ListAuthorsQueryHandler : IRequestHandler<ListAuthorsQuery, ResultResponse<IEnumerable<AuthorViewModel>>>
+namespace Library.Application.Queries.Author.ListAuthors;
+
+public class ListAuthorsQueryHandler(LibraryContext context)
+    : IRequestHandler<ListAuthorsQuery, ResultResponse<IEnumerable<ResponseAuthorDto>>>
 {
-    private readonly LibraryContext _context;
-
-    public ListAuthorsQueryHandler(LibraryContext context)
-        => _context = context;
-        
-    public async Task<ResultResponse<IEnumerable<AuthorViewModel>>> Handle(ListAuthorsQuery request, CancellationToken cancellationToken)
+    public async Task<ResultResponse<IEnumerable<ResponseAuthorDto>>> Handle(ListAuthorsQuery request, CancellationToken cancellationToken)
     {
-        var authors = await _context.Authors
-            .Select(a => new AuthorViewModel
+        var authors = await context.Authors
+            .Select(a => new ResponseAuthorDto
             {
                 Name = a.Name,
                 Country = a.Country,
@@ -18,6 +16,6 @@ public class ListAuthorsQueryHandler : IRequestHandler<ListAuthorsQuery, ResultR
             })
             .ToListAsync(cancellationToken);
 
-        return new OkResponse<IEnumerable<AuthorViewModel>>(authors);
+        return new OkResponse<IEnumerable<ResponseAuthorDto>>(authors);
     }
 }

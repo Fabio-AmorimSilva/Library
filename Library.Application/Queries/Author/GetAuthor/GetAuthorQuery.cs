@@ -1,6 +1,5 @@
-﻿namespace Library.Application.Queries.Author.GetAuthor;
+﻿using Library.Application.ResponseDtos.Authors;
 
-public readonly struct GetAuthorQuery(Guid id) : IRequest<ResultResponse<AuthorViewModel>>
-{
-    public Guid Id { get; init; } = id;
-}
+namespace Library.Application.Queries.Author.GetAuthor;
+
+public sealed record GetAuthorQuery(Guid Id) : IRequest<ResultResponse<ResponseAuthorDto>>;

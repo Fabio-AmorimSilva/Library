@@ -1,6 +1,3 @@
 ﻿namespace Library.Application.Commands.Author.DeleteAuthor;
 
-public readonly struct DeleteAuthorCommand(Guid authorId) : IRequest<ResultResponse<Unit>>
-{
-    public Guid AuthorId { get; init; } = authorId;
-}
+public sealed record DeleteAuthorCommand(Guid AuthorId) : IRequest<ResultResponse<Unit>>;

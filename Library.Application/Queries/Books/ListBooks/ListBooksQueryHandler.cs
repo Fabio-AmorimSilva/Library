@@ -1,15 +1,15 @@
-﻿using Library.Application.ViewModels.Library;
+﻿using Library.Application.ResponseDtos.Authors;
 
 namespace Library.Application.Queries.Books.ListBooks;
 
-public class ListBooksQueryHandler(LibraryContext context) : IRequestHandler<ListBooksQuery, ResultResponse<IEnumerable<ListBookViewModel>>>
+public class ListBooksQueryHandler(LibraryContext context) : IRequestHandler<ListBooksQuery, ResultResponse<IEnumerable<ResponseListBookDto>>>
 {
-    public async Task<ResultResponse<IEnumerable<ListBookViewModel>>> Handle(ListBooksQuery request, CancellationToken cancellationToken)
+    public async Task<ResultResponse<IEnumerable<ResponseListBookDto>>> Handle(ListBooksQuery request, CancellationToken cancellationToken)
     {
         var books = await context.Books
-            .Select(b => new ListBookViewModel
+            .Select(b => new ResponseListBookDto
             {
-                Book = new BookViewModel
+                ResponseBook = new ResponseBookDto
                 {
                     Title = b.Title,
                     Genre = b.Genre,
@@ -17,13 +17,13 @@ public class ListBooksQueryHandler(LibraryContext context) : IRequestHandler<Lis
                     Quantity = b.Quantity,
                     Year = b.Year
                 },
-                Author = new AuthorViewModel
+                ResponseAuthor = new ResponseAuthorDto
                 {
                     Name = b.Author!.Name,
                     Birth = b.Author.Birth,
                     Country = b.Author.Country
                 },
-                Library = new LibraryUnitViewModel
+                ResponseLibrary = new ResponseLibraryUnitDto
                 {
                     Name = b.Library!.Name,
                     City = b.Library.City
@@ -31,6 +31,6 @@ public class ListBooksQueryHandler(LibraryContext context) : IRequestHandler<Lis
             })
             .ToListAsync(cancellationToken);
         
-        return new OkResponse<IEnumerable<ListBookViewModel>>(books);
+        return new OkResponse<IEnumerable<ResponseListBookDto>>(books);
     }
 }

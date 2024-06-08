@@ -1,6 +1,6 @@
-﻿namespace Library.Application.ViewModels.Books;
+﻿namespace Library.Application.ResponseDtos.Books;
 
-public readonly record struct BookViewModel
+public readonly record struct ResponseBookDto
 {
     public required string Title { get; init; }
     public required DateTime Year { get; init; }

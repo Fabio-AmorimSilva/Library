@@ -1,6 +1,6 @@
-﻿namespace Library.Application.ViewModels.Authors;
+﻿namespace Library.Application.ResponseDtos.Authors;
 
-public readonly record struct AuthorViewModel
+public sealed record ResponseAuthorDto
 {
     public required string Name { get; init; }
     public required string Country { get; init; }

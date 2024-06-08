@@ -1,5 +1,5 @@
-﻿namespace Library.Application.Queries.Author.ListAuthors;
+﻿using Library.Application.ResponseDtos.Authors;
 
-public struct ListAuthorsQuery : IRequest<ResultResponse<IEnumerable<AuthorViewModel>>>
-{
-}
+namespace Library.Application.Queries.Author.ListAuthors;
+
+public sealed record ListAuthorsQuery : IRequest<ResultResponse<IEnumerable<ResponseAuthorDto>>>;

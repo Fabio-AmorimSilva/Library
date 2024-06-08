@@ -1,24 +1,18 @@
-﻿using Library.Application.ViewModels.Library;
+﻿namespace Library.Application.Queries.Libraries.ListLibraries;
 
-namespace Library.Application.Queries.Libraries.ListLibraries;
-
-public class ListLibrariesQueryHandler : IRequestHandler<ListLibrariesQuery, ResultResponse<IEnumerable<LibraryUnitViewModel>>>
+public class ListLibrariesQueryHandler(LibraryContext context)
+    : IRequestHandler<ListLibrariesQuery, ResultResponse<IEnumerable<ResponseLibraryUnitDto>>>
 {
-    private readonly LibraryContext _context;
-
-    public ListLibrariesQueryHandler(LibraryContext context)
-        => _context = context;
-    
-    public async Task<ResultResponse<IEnumerable<LibraryUnitViewModel>>> Handle(ListLibrariesQuery request, CancellationToken cancellationToken)
+    public async Task<ResultResponse<IEnumerable<ResponseLibraryUnitDto>>> Handle(ListLibrariesQuery request, CancellationToken cancellationToken)
     {
-        var libraries = await _context.Libraries
-            .Select(l => new LibraryUnitViewModel
+        var libraries = await context.Libraries
+            .Select(l => new ResponseLibraryUnitDto
             {
                 Name = l.Name,
                 City = l.City
             })
             .ToListAsync(cancellationToken);
 
-        return new OkResponse<IEnumerable<LibraryUnitViewModel>>(libraries);
+        return new OkResponse<IEnumerable<ResponseLibraryUnitDto>>(libraries);
     }
 }
