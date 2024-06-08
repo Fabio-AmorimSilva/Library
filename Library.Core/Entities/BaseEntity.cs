@@ -1,6 +1,6 @@
 ﻿namespace Library.Core.Entities;
 
-public abstract class BaseEntity : IAuditableEntity
+public abstract class BaseEntity : AggregateRoot, IAuditableEntity
 {
     public Guid Id { get; init; } = Guid.NewGuid();
     public Guid CreatedBy { get; set; }

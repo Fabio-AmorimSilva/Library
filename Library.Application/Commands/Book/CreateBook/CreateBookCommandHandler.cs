@@ -11,6 +11,13 @@ public class CreateBookCommandHandler(LibraryContext context) : IRequestHandler<
         if (author is null)
             return new NotFoundResponse<Guid>(ErrorMessages.NotFound<Domain.Entities.Author>());
         
+        var library = await context.Libraries
+            .Include(a => a.Books)
+            .FirstOrDefaultAsync(a => a.Id == request.LibraryId, cancellationToken);
+
+        if (library is null)
+            return new NotFoundResponse<Guid>(ErrorMessages.NotFound<LibraryUnit>());
+        
         var book = new Domain.Entities.Book(
             title: request.Title,
             year: request.Year,
@@ -19,7 +26,10 @@ public class CreateBookCommandHandler(LibraryContext context) : IRequestHandler<
         );
         
         author.AddBook(book);
+        library.AddBook(book);
 
+        book.AddDomainEvent(new CreatedBookDomainEvent(book, library));
+        
         await context.Books.AddAsync(book, cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
 
