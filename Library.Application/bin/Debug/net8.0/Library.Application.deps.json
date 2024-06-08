@@ -11,6 +11,7 @@
           "Ardalis.Specification.EntityFrameworkCore": "8.0.0",
           "BCrypt.Net-Next": "4.0.3",
           "FluentValidation": "11.9.0",
+          "Library.Core": "1.0.0",
           "Library.Domain": "1.0.0",
           "Library.Infrastructure": "1.0.0",
           "MediatR": "12.2.0",

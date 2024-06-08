@@ -4913,6 +4913,7 @@
           "Ardalis.Specification.EntityFrameworkCore": "8.0.0",
           "BCrypt.Net-Next": "4.0.3",
           "FluentValidation": "11.9.0",
+          "Library.Core": "1.0.0",
           "Library.Domain": "1.0.0",
           "Library.Infrastructure": "1.0.0",
           "MediatR": "12.2.0",
@@ -13913,7 +13914,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\fabio\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -13921,17 +13922,16 @@
       "projectUniqueName": "C:\\git\\Library\\Library.WebApi\\Library.WebApi.csproj",
       "projectName": "Library.WebApi",
       "projectPath": "C:\\git\\Library\\Library.WebApi\\Library.WebApi.csproj",
-      "packagesPath": "C:\\Users\\fabio\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
       "outputPath": "C:\\git\\Library\\Library.WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\fabio\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -14051,7 +14051,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.301/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
