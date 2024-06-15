@@ -1,6 +1,4 @@
-﻿using Library.Application.ResponseDtos.Authors;
-
-namespace Library.Application.Queries.Author.ListAuthors;
+﻿namespace Library.Application.Queries.Author.ListAuthors;
 
 public class ListAuthorsQueryHandler(LibraryContext context)
     : IRequestHandler<ListAuthorsQuery, ResultResponse<IEnumerable<ResponseAuthorDto>>>
@@ -9,11 +7,11 @@ public class ListAuthorsQueryHandler(LibraryContext context)
     {
         var authors = await context.Authors
             .Select(a => new ResponseAuthorDto
-            {
-                Name = a.Name,
-                Country = a.Country,
-                Birth = a.Birth
-            })
+            (
+                a.Name,
+                a.Country,
+                a.Birth
+            ))
             .ToListAsync(cancellationToken);
 
         return new OkResponse<IEnumerable<ResponseAuthorDto>>(authors);

@@ -1,6 +1,4 @@
-﻿using Library.Application.ResponseDtos.Authors;
-
-namespace Library.Application.Queries.Author.GetAuthor;
+﻿namespace Library.Application.Queries.Author.GetAuthor;
 
 public class GetAuthorQueryHandler(LibraryContext context) : IRequestHandler<GetAuthorQuery, ResultResponse<ResponseAuthorDto>>
 {
@@ -14,10 +12,10 @@ public class GetAuthorQueryHandler(LibraryContext context) : IRequestHandler<Get
             return new NotFoundResponse<ResponseAuthorDto>(ErrorMessages.NotFound<Domain.Entities.Author>());
 
         return new OkResponse<ResponseAuthorDto>(new ResponseAuthorDto
-        {
-            Name = author.Name,
-            Country = author.Country,
-            Birth = author.Birth
-        });
+        (
+           author.Name,
+           author.Country,
+           author.Birth
+        ));
     }
 }

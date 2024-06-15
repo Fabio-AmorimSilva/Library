@@ -10,12 +10,12 @@ public class GetBookQueryHandler(LibraryContext context)
             return new NotFoundResponse<ResponseBookDto>(ErrorMessages.NotFound<Book>());
 
         return new OkResponse<ResponseBookDto>(new ResponseBookDto
-        {
-            Title = book.Title,
-            Genre = book.Genre,
-            Quantity = book.Quantity,
-            Pages = book.Pages,
-            Year = book.Year
-        });
+        (
+            book.Title,
+            book.Year, 
+       book.Quantity,
+     book.Pages,
+            book.Genre
+        ));
     }
 }

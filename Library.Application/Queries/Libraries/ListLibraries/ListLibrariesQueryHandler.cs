@@ -7,10 +7,20 @@ public class ListLibrariesQueryHandler(LibraryContext context)
     {
         var libraries = await context.Libraries
             .Select(l => new ResponseLibraryUnitDto
-            {
-                Name = l.Name,
-                City = l.City
-            })
+                (
+                    l.Name,
+                    l.City,
+                    l.Books.Select(b => new ResponseBookDto
+                        (
+                            b.Title,
+                            b.Year, 
+                            b.Quantity,
+                            b.Pages,
+                            b.Genre
+                        )
+                    )
+                )
+            )
             .ToListAsync(cancellationToken);
 
         return new OkResponse<IEnumerable<ResponseLibraryUnitDto>>(libraries);

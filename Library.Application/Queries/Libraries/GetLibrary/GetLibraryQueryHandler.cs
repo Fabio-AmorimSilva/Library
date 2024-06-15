@@ -13,9 +13,18 @@ public class GetLibraryQueryHandler(LibraryContext context)
             return new NotFoundResponse<ResponseLibraryUnitDto>(ErrorMessages.NotFound<LibraryUnit>());
 
         return new OkResponse<ResponseLibraryUnitDto>(new ResponseLibraryUnitDto
-        {
-            Name = library.Name,
-            City = library.City
-        });
+        (
+            library!.Name,
+            library.City,
+            library.Books.Select(b => new ResponseBookDto
+                (
+                    b.Title,
+                    b.Year,
+                    b.Quantity,
+                    b.Pages,
+                    b.Genre
+                )
+            )
+        ));
     }
 }

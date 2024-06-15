@@ -1,6 +1,4 @@
-﻿using Library.Application.ResponseDtos.Authors;
-
-namespace Library.Application.Queries.Books.ListBooks;
+﻿namespace Library.Application.Queries.Books.ListBooks;
 
 public class ListBooksQueryHandler(LibraryContext context) : IRequestHandler<ListBooksQuery, ResultResponse<IEnumerable<ResponseListBookDto>>>
 {
@@ -8,27 +6,36 @@ public class ListBooksQueryHandler(LibraryContext context) : IRequestHandler<Lis
     {
         var books = await context.Books
             .Select(b => new ResponseListBookDto
-            {
-                ResponseBook = new ResponseBookDto
-                {
-                    Title = b.Title,
-                    Genre = b.Genre,
-                    Pages = b.Pages,
-                    Quantity = b.Quantity,
-                    Year = b.Year
-                },
-                ResponseAuthor = new ResponseAuthorDto
-                {
-                    Name = b.Author!.Name,
-                    Birth = b.Author.Birth,
-                    Country = b.Author.Country
-                },
-                ResponseLibrary = new ResponseLibraryUnitDto
-                {
-                    Name = b.Library!.Name,
-                    City = b.Library.City
-                },
-            })
+            (
+                new ResponseBookDto
+                (
+                    b.Title,
+                    b.Year,
+                    b.Pages,
+                    b.Quantity,
+                    b.Genre
+                ),
+                new ResponseAuthorDto
+                (
+                    b.Author!.Name,
+                    b.Author.Country,
+                    b.Author.Birth
+                ),
+                new ResponseLibraryUnitDto
+                (
+                    b.Library!.Name,
+                    b.Library.City,
+                    b.Library.Books.Select(b => new ResponseBookDto
+                        (
+                            b.Title,
+                            b.Year, 
+                            b.Quantity,
+                            b.Pages,
+                            b.Genre
+                        )
+                    )
+                )
+            ))
             .ToListAsync(cancellationToken);
         
         return new OkResponse<IEnumerable<ResponseListBookDto>>(books);

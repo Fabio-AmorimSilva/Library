@@ -17,6 +17,7 @@ global using Microsoft.Extensions.Options;
 global using Microsoft.IdentityModel.Tokens;
 global using Ardalis.Specification.EntityFrameworkCore;
 global using Library.Application.Commands.Account.Login;
+global using Library.Application.ResponseDtos.Authors;
 global using Library.Application.ResponseDtos.Books;
 global using Library.Application.ResponseDtos.Library;
 global using Library.Core.Messages;
