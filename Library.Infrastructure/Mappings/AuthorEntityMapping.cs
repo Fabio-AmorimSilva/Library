@@ -8,6 +8,9 @@ public class AuthorEntityMapping
             .ConfigureEntityConventions();
         
         builder
+            .ConfigureAuditableEntityConventions();
+        
+        builder
             .Property(a => a.Name)
             .HasMaxLength(Author.NameMaxLength)
             .IsRequired();

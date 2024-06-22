@@ -11,6 +11,9 @@ public class UserEntityMapping
             .ConfigureEntityConventions();
         
         builder
+            .ConfigureAuditableEntityConventions();
+        
+        builder
             .Property(u => u.Name)
             .HasMaxLength(User.NameMaxLength)
             .IsRequired();

@@ -11,6 +11,9 @@ public class BookEntityMapping
             .ConfigureEntityConventions();
         
         builder
+            .ConfigureAuditableEntityConventions();
+        
+        builder
             .Property(b => b.Title)
             .HasMaxLength(Book.TitleMaxLength)
             .IsRequired();

@@ -5,6 +5,7 @@ public static class ConfigureDbContext
     public static WebApplicationBuilder AddDbContextConfiguration(this WebApplicationBuilder builder)
     {
         builder.Services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
+        builder.Services.AddScoped<ISaveChangesInterceptor, AuditEntityInterceptor>();
         
         builder.Services.AddDbContext<BaseContext>((sp, options) =>
         {

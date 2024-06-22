@@ -11,6 +11,9 @@ public class LibraryUnitEntityMapping
             .ConfigureEntityConventions();
         
         builder
+            .ConfigureAuditableEntityConventions();
+        
+        builder
             .Property(lu => lu.Name)
             .HasMaxLength(LibraryUnit.NameMaxLength)
             .IsRequired();
