@@ -1,20 +1,17 @@
-﻿using AuditTrail.Entities;
-using Library.Core.Entities;
-using Library.Core.Entities.Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using Library.Core.Entities;
 
 namespace AuditTrail.Interceptors;
 
 public class AuditEntityInterceptor : SaveChangesInterceptor
 {
     public override async ValueTask<int> SavedChangesAsync(
-        SaveChangesCompletedEventData eventData, 
+        SaveChangesCompletedEventData eventData,
         int result,
         CancellationToken cancellationToken = new CancellationToken()
     )
     {
         await SetAuditableEntity(eventData.Context);
-        
+
         return await base.SavedChangesAsync(eventData, result, cancellationToken);
     }
 
@@ -22,7 +19,7 @@ public class AuditEntityInterceptor : SaveChangesInterceptor
     {
         if (context is null)
             return;
-        
+
         var entries = context.ChangeTracker
             .Entries<BaseEntity>()
             .ToList();
@@ -35,13 +32,13 @@ public class AuditEntityInterceptor : SaveChangesInterceptor
                     userId: entry.Entity.CreatedBy,
                     type: entry.Entity.GetType().ToString(),
                     tableName: entry.Entity.GetType() + "s",
-                    timeStamp: DateTime.Now, 
-                    oldValues: entry.OriginalValues.Properties.ToString(),
-                    newValues: entry.CurrentValues.Properties.ToString(),
-                    updatedColumns: entry.CurrentValues.Properties.Select(p => p.Name).ToString(),
+                    timeStamp: DateTime.Now,
+                    oldValues: entry.OriginalValues.Properties.ToString()!,
+                    newValues: entry.CurrentValues.Properties.ToString()!,
+                    updatedColumns: entry.CurrentValues.Properties.Select(p => p.Name).ToString()!,
                     primaryKey: entry.Entity.Id.ToString()
                 );
-                
+
                 await context.AddAsync(audit);
             }
         }

@@ -1,4 +1,6 @@
-﻿namespace Library.Infrastructure.Interceptors;
+﻿using System.Security.Claims;
+
+namespace Library.Infrastructure.Interceptors;
 
 public class AuditableEntityInterceptor : SaveChangesInterceptor
 {
@@ -27,7 +29,10 @@ public class AuditableEntityInterceptor : SaveChangesInterceptor
             .Where(e => e.State == EntityState.Added);
 
         foreach (var entity in createdEntities)
+        {
             entity.Entity.CreatedAt = DateTime.Now;
+            entity.Entity.CreatedBy = new Guid(ClaimsPrincipal.Current!.Identities.First().Claims.FirstOrDefault(c => c.Type.Equals("Sid", StringComparison.OrdinalIgnoreCase))!.Value);    
+        }
     }
 
     private void SetUpdateInfo(DbContext? context)

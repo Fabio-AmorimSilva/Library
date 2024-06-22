@@ -2,6 +2,12 @@
 
 public class Audit
 {
+    public const int TableNameMaxLength = 256;
+    public const int OldValuesMaxLength = 2000;
+    public const int NewValuesMaxLength = 2000;
+    public const int UpdatedColumnsMaxLength = 2000;
+    public const int PrimaryKeyMaxLength = 2000;
+    
     public Guid Id { get; private set; }
     public Guid UserId { get; private set; }
     public string Type { get; private set; }
@@ -24,6 +30,21 @@ public class Audit
     )
     {
         Id = Guid.NewGuid();
+
+        ArgumentOutOfRangeException.ThrowIfEqual(userId, Guid.Empty);
+        
+        ArgumentException.ThrowIfNullOrWhiteSpace(tableName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(oldValues);
+        ArgumentException.ThrowIfNullOrWhiteSpace(newValues);
+        ArgumentException.ThrowIfNullOrWhiteSpace(updatedColumns);
+        ArgumentException.ThrowIfNullOrWhiteSpace(primaryKey);
+        
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(tableName.Length, TableNameMaxLength);
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(OldValues.Length, OldValuesMaxLength);
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(NewValues.Length, NewValuesMaxLength);
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(UpdatedColumns.Length, UpdatedColumnsMaxLength);
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(PrimaryKey.Length, PrimaryKeyMaxLength);
+        
         UserId = userId;
         Type = type;
         TableName = tableName;
