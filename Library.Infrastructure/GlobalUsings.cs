@@ -1,5 +1,6 @@
 ﻿// Global using directives
 
+global using AuditTrail.Entities;
 global using Autofac;
 global using Library.Core.Entities;
 global using Library.Domain.Entities;

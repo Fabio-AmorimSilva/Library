@@ -3,6 +3,7 @@
 global using System.Text;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;
+global using AuditTrail.Interceptors;
 global using FluentValidation;
 global using Library.Application.Options;
 global using Library.Application.Services;
