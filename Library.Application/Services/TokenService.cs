@@ -16,8 +16,8 @@ public class TokenService(IOptions<JwtConfigurationSettings> settings)
             Issuer = _jwtConfigurationSettings.Emissary,
             Audience = _jwtConfigurationSettings.ValidOn,
             SigningCredentials = new SigningCredentials(
-                new SymmetricSecurityKey(key),
-                SecurityAlgorithms.HmacSha256Signature)
+                key: new SymmetricSecurityKey(key),
+                algorithm: SecurityAlgorithms.HmacSha256Signature)
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);

@@ -1,6 +1,6 @@
 ﻿namespace Library.Application.Extensions;
 
-public static class RoleClaimsExtensions
+public static class UserExtensions
 {
     public static IEnumerable<Claim> GetClaims(this User user)
     {

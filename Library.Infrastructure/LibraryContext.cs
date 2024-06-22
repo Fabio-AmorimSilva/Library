@@ -6,6 +6,7 @@ public class LibraryContext(DbContextOptions<BaseContext> options) : BaseContext
     public DbSet<Book> Books {  get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<LibraryUnit> Libraries { get; set; }
+    public DbSet<Audit> Audits { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
         => modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
