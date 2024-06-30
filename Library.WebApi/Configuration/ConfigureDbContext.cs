@@ -6,12 +6,16 @@ public static class ConfigureDbContext
     {
         builder.Services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
         builder.Services.AddScoped<ISaveChangesInterceptor, AuditEntityInterceptor>();
+        builder.Services.AddScoped<RequestUserService>();
         
         builder.Services.AddDbContext<BaseContext>((sp, options) =>
         {
+            var requestUserService = sp.GetRequiredService<RequestUserService>();
+            var userId = requestUserService.GetUserId();
+            
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             options.UseSqlServer(connectionString);
-            options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
+            options.AddInterceptors(new AuditableEntityInterceptor(userId));
         });
         
         builder.Services.AddDbContext<LibraryContext>(options =>

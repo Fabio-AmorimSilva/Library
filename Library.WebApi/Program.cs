@@ -1,3 +1,5 @@
+using System.Security.Claims;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder
@@ -16,7 +18,8 @@ builder.Services
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
     .AddCustomHangFire(builder)
-    .ConfigureOptions<ConfigureSwaggerOptions>();
+    .ConfigureOptions<ConfigureSwaggerOptions>()
+    .AddHttpContextAccessor();
 
 var app = builder.Build();
 

@@ -2,7 +2,7 @@
 
 namespace AuditTrail.Interceptors;
 
-public class AuditEntityInterceptor : SaveChangesInterceptor
+public class AuditEntityInterceptor: SaveChangesInterceptor
 {
     public override async ValueTask<int> SavedChangesAsync(
         SaveChangesCompletedEventData eventData,
