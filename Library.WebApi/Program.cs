@@ -1,5 +1,3 @@
-using System.Security.Claims;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder
@@ -7,7 +5,6 @@ builder
     .AddJwtConfiguration()
     .AddJsonConfiguration()
     .AddDbContextConfiguration()
-    .AddExceptionFilterConfiguration()
     .AddCorsConfiguration()
     .AddSerilogCustomConfiguration();
 
@@ -19,7 +16,8 @@ builder.Services
     .AddSwaggerGen()
     .AddCustomHangFire(builder)
     .ConfigureOptions<ConfigureSwaggerOptions>()
-    .AddHttpContextAccessor();
+    .AddHttpContextAccessor()
+    .AddCustomExceptionHandlerConfiguration();
 
 var app = builder.Build();
 
@@ -28,6 +26,8 @@ if (app.Environment.IsDevelopment())
     app.AddSwagger();
     app.UseCors("Development");
 }
+
+app.UseExceptionHandler(_ => { });
 
 app.UseHttpsRedirection();
 
