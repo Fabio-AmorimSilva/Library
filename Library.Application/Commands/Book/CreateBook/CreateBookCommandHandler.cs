@@ -27,8 +27,6 @@ public class CreateBookCommandHandler(LibraryContext context) : IRequestHandler<
         
         author.AddBook(book);
         library.AddBook(book);
-
-        book.AddDomainEvent(new CreatedBookDomainEvent(book, library));
         
         await context.Books.AddAsync(book, cancellationToken);
         await context.SaveChangesAsync(cancellationToken);

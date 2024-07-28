@@ -1,4 +1,4 @@
-﻿namespace Library.Application.ResponseDtos.Authors;
+﻿namespace Library.Application.Dtos.Authors;
 
 public sealed record ResponseAuthorDto(
     string Name, 

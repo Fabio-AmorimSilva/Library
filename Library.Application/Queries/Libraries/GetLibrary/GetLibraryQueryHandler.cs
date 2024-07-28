@@ -1,4 +1,6 @@
-﻿namespace Library.Application.Queries.Libraries.GetLibrary;
+﻿using Library.Application.Dtos.Library;
+
+namespace Library.Application.Queries.Libraries.GetLibrary;
 
 public class GetLibraryQueryHandler(LibraryContext context)
     : IRequestHandler<GetLibraryQuery, ResultResponse<ResponseLibraryUnitDto>>

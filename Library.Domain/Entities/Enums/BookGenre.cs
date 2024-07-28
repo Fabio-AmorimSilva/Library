@@ -2,8 +2,8 @@
 
 public enum BookGenre
 {
-    FICTION = 1,
-    ROMANCE = 2,
-    BIOGRAPHY = 3,
-    TECHNICAL = 4
+    Fiction = 1,
+    Romance = 2,
+    Biography = 3,
+    Technical = 4
 }

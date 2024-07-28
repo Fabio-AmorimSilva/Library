@@ -52,4 +52,5 @@ global using Library.Application.Queries.Libraries.ListLibraries;
 global using Library.Core.Behaviors;
 global using Microsoft.Extensions.DependencyInjection.Extensions;
 global using Library.Infrastructure.Interceptors;
+global using Microsoft.AspNetCore.Diagnostics;
 global using Microsoft.EntityFrameworkCore.Diagnostics;

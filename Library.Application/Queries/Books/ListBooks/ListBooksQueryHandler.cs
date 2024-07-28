@@ -1,4 +1,6 @@
-﻿namespace Library.Application.Queries.Books.ListBooks;
+﻿using Library.Application.Dtos.Library;
+
+namespace Library.Application.Queries.Books.ListBooks;
 
 public class ListBooksQueryHandler(LibraryContext context) : IRequestHandler<ListBooksQuery, ResultResponse<IEnumerable<ResponseListBookDto>>>
 {

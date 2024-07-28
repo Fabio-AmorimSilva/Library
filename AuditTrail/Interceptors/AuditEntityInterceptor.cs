@@ -1,20 +1,18 @@
-﻿using Library.Core.Entities;
-
-namespace AuditTrail.Interceptors;
+﻿namespace AuditTrail.Interceptors;
 
 public class AuditEntityInterceptor: SaveChangesInterceptor
 {
     public override async ValueTask<int> SavedChangesAsync(
         SaveChangesCompletedEventData eventData,
         int result,
-        CancellationToken cancellationToken = new CancellationToken()
+        CancellationToken cancellationToken = new()
     )
     {
         await SetAuditableEntity(eventData.Context);
 
         return await base.SavedChangesAsync(eventData, result, cancellationToken);
     }
-
+    
     private async Task SetAuditableEntity(DbContext? context)
     {
         if (context is null)

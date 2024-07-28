@@ -1,4 +1,4 @@
-﻿namespace Library.Application.ResponseDtos.Library;
+﻿namespace Library.Application.Dtos.Library;
 
 public sealed record ResponseLibraryUnitDto(
     string Name,

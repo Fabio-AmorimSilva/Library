@@ -1,8 +1,4 @@
-﻿using Library.Core.Entities;
-using Library.Core.ErrorHandling;
-using Library.Core.Messages;
-
-namespace Library.Domain.Entities;
+﻿namespace Library.Domain.Entities;
 
 public class Book : BaseEntity
 {
@@ -19,7 +15,7 @@ public class Book : BaseEntity
     public LibraryUnit? Library { get; private set; }
     public BookGenre Genre { get; private set; }
 
-    public Book(){}
+    protected Book(){}
     
     public Book( 
         string title, 
@@ -35,6 +31,8 @@ public class Book : BaseEntity
         Year = year;
         Pages = pages;
         Genre = genre;
+
+        AddDomainEvent(new CreatedBookDomainEvent(this));
     }
 
     public Result UpdateBook(

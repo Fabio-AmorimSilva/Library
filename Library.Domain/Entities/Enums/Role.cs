@@ -2,7 +2,7 @@
 
 public enum Role
 {
-    USER = 1,
-    LIBRARIAN = 2,
-    AUTHOR = 3
+    User = 1,
+    Librarian = 2,
+    Author = 3
 }

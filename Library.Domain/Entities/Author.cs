@@ -1,8 +1,4 @@
-﻿using Library.Core.Entities;
-using Library.Core.ErrorHandling;
-using Library.Core.Messages;
-
-namespace Library.Domain.Entities;
+﻿namespace Library.Domain.Entities;
 
 public class Author : BaseEntity
 {

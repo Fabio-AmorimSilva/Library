@@ -1,6 +1,4 @@
-﻿using Library.Core.Entities.Interfaces;
-
-namespace Microsoft.EntityFrameworkCore;
+﻿namespace Microsoft.EntityFrameworkCore;
 
 public static class EntityTypeBuilderExtensions
 {

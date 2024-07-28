@@ -1,4 +1,6 @@
-﻿namespace Library.Application.Queries.Libraries.ListLibraries;
+﻿using Library.Application.Dtos.Library;
+
+namespace Library.Application.Queries.Libraries.ListLibraries;
 
 public class ListLibrariesQueryHandler(LibraryContext context)
     : IRequestHandler<ListLibrariesQuery, ResultResponse<IEnumerable<ResponseLibraryUnitDto>>>

@@ -1,4 +1,4 @@
-﻿namespace Library.Application.DomainEventHandlers;
+﻿namespace Library.Application.DomainEvents;
 
 public class CreatedBookDomainEventHandler : INotificationHandler<CreatedBookDomainEvent>
 {
@@ -11,7 +11,6 @@ public class CreatedBookDomainEventHandler : INotificationHandler<CreatedBookDom
             Genre  : {notification.Book.Genre}
             Year   : {notification.Book.Year}
             Pages  : {notification.Book.Pages}
-            Library: {notification.Book.Library.Name}
         _____________//________________________
         ");
         

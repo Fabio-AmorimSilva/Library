@@ -1,7 +1,4 @@
-﻿using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
-
-namespace Library.Infrastructure.Interceptors;
+﻿namespace Library.Infrastructure.Interceptors;
 
 public class AuditableEntityInterceptor(string? userId = null) : SaveChangesInterceptor
 {

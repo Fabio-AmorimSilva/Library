@@ -1,4 +1,4 @@
-﻿namespace Library.Application.ResponseDtos.Books;
+﻿namespace Library.Application.Dtos.Books;
 
 public sealed record ResponseBookDto(
     string Title, 
