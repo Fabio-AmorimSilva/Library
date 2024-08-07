@@ -1,4 +1,6 @@
-﻿namespace Library.Application.Commands.Author.CreateAuthor;
+﻿using Library.Core.Result;
+
+namespace Library.Application.Commands.Author.CreateAuthor;
 
 public sealed record CreateAuthorCommand(
     string Name, 

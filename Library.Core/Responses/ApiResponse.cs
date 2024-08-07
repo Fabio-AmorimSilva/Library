@@ -1,4 +1,6 @@
-﻿namespace Library.Core.Responses;
+﻿using Library.Core.Result;
+
+namespace Library.Core.Responses;
 
 public abstract class ApiResponse<T> : ResultResponse<T>
 {

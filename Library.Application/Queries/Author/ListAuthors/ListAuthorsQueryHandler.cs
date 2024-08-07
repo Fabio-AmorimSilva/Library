@@ -1,4 +1,6 @@
-﻿namespace Library.Application.Queries.Author.ListAuthors;
+﻿using Library.Core.Result;
+
+namespace Library.Application.Queries.Author.ListAuthors;
 
 public class ListAuthorsQueryHandler(LibraryContext context)
     : IRequestHandler<ListAuthorsQuery, ResultResponse<IEnumerable<ResponseAuthorDto>>>

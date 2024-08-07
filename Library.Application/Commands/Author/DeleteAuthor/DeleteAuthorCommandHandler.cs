@@ -1,4 +1,6 @@
-﻿namespace Library.Application.Commands.Author.DeleteAuthor;
+﻿using Library.Core.Result;
+
+namespace Library.Application.Commands.Author.DeleteAuthor;
 
 public class DeleteAuthorCommandHandler(LibraryContext context) : IRequestHandler<DeleteAuthorCommand, ResultResponse<Unit>>
 {

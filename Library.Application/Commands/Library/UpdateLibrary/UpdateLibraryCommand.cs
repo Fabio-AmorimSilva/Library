@@ -1,4 +1,6 @@
-﻿namespace Library.Application.Commands.Library.UpdateLibrary;
+﻿using Library.Core.Result;
+
+namespace Library.Application.Commands.Library.UpdateLibrary;
 
 public sealed record UpdateLibraryCommand(
     Guid LibraryUnitId, 

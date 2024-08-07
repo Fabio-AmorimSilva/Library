@@ -1,6 +1,6 @@
 ﻿namespace Library.Infrastructure.Interceptors;
 
-public class AuditableEntityInterceptor(string? userId = null) : SaveChangesInterceptor
+public class AuditableEntityInterceptor(string userId) : SaveChangesInterceptor
 {
     public override ValueTask<InterceptionResult<int>> SavingChangesAsync(
         DbContextEventData eventData,
@@ -8,13 +8,13 @@ public class AuditableEntityInterceptor(string? userId = null) : SaveChangesInte
         CancellationToken cancellationToken = new()
     )
     {
-        SetCreateInfo(eventData.Context, userId);
+        SetCreateInfo(eventData.Context);
         SetUpdateInfo(eventData.Context);
 
         return base.SavingChangesAsync(eventData, result, cancellationToken);
     }
 
-    private void SetCreateInfo(DbContext? context, string? userId = null)
+    private void SetCreateInfo(DbContext? context)
     {
         if (context is null)
             return;
@@ -29,7 +29,7 @@ public class AuditableEntityInterceptor(string? userId = null) : SaveChangesInte
         foreach (var entity in createdEntities)
         {
             entity.Entity.CreatedAt = DateTime.Now;
-            entity.Entity.CreatedBy = userId.IsNullOrEmpty() ? Guid.Empty : Guid.Parse(userId);
+            entity.Entity.CreatedBy = Guid.Parse(userId);
         }
     }
 

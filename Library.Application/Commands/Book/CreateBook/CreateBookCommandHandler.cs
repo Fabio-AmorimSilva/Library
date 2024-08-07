@@ -1,4 +1,6 @@
-﻿namespace Library.Application.Commands.Book.CreateBook;
+﻿using Library.Core.Result;
+
+namespace Library.Application.Commands.Book.CreateBook;
 
 public class CreateBookCommandHandler(LibraryContext context) : IRequestHandler<CreateBookCommand, ResultResponse<Guid>>
 {

@@ -1,4 +1,6 @@
-﻿namespace Library.Application.Commands.Book.DeleteBook;
+﻿using Library.Core.Result;
+
+namespace Library.Application.Commands.Book.DeleteBook;
 
 public class DeleteBookCommandHandler(LibraryContext context) : IRequestHandler<DeleteBookCommand, ResultResponse<Unit>>
 {

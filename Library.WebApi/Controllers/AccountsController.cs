@@ -1,4 +1,6 @@
-﻿namespace Library.WebApi.Controllers;
+﻿using Library.Core.Result;
+
+namespace Library.WebApi.Controllers;
 
 [ApiController]
 [ApiVersion("2.0")]

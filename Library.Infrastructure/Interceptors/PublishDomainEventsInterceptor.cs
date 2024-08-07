@@ -19,7 +19,7 @@ public class PublishDomainEventsInterceptor(IPublisher publisher) : SaveChangesI
             return;
 
         var entities = context.ChangeTracker
-            .Entries<BaseEntity>()
+            .Entries<AggregateRoot>()
             .Where(e => e.Entity.DomainEvents.Any())
             .Select(e => e.Entity);
 

@@ -1,4 +1,6 @@
-﻿namespace Library.Application.Commands.Account.Signup;
+﻿using Library.Core.Result;
+
+namespace Library.Application.Commands.Account.Signup;
 
 public class SignupCommandHandler(LibraryContext context) : IRequestHandler<SignupCommand, ResultResponse<Guid>>
 {

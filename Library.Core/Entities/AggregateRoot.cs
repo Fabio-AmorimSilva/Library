@@ -2,12 +2,14 @@
 
 public class AggregateRoot
 {
+    public Guid Id { get; init; } = Guid.NewGuid();
+    
     private readonly List<DomainEvent> _domainEvents = [];
 
     [NotMapped]
     public IReadOnlyCollection<DomainEvent> DomainEvents => _domainEvents.AsReadOnly();
 
-    public void AddDomainEvent(DomainEvent domainEvent)
+    protected void AddDomainEvent(DomainEvent domainEvent)
         => _domainEvents.Add(domainEvent);
     
     public void RemoveDomainEvent(DomainEvent domainEvent)

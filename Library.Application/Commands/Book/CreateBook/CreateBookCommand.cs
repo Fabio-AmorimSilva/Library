@@ -1,4 +1,6 @@
-﻿namespace Library.Application.Commands.Book.CreateBook;
+﻿using Library.Core.Result;
+
+namespace Library.Application.Commands.Book.CreateBook;
 
 public sealed record CreateBookCommand(
     string Title,

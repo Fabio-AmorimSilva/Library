@@ -1,6 +1,6 @@
 ﻿namespace Library.Domain.Entities;
 
-public class Book : BaseEntity
+public class Book : AggregateRoot
 {
     public const int TitleMaxLength = 80;
     public const int PagesMinLength = 0;

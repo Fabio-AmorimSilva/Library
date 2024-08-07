@@ -1,11 +1,12 @@
 ﻿namespace Library.Domain.Entities;
 
-public class User : BaseEntity
+public class User
 {
     public const int NameMaxLength = 80;
     public const int EmailMaxLength = 80;
     public const int PasswordMaxLength = 256;
     
+    public Guid Id { get; private set; }
     public string Name { get; private set; }
     public string Email { get; private set; }
     public string Password { get; private set; }
@@ -20,6 +21,7 @@ public class User : BaseEntity
         Guard.HasSizeLessThan(name, NameMaxLength, nameof(name));
         Guard.HasSizeLessThan(email, EmailMaxLength, nameof(email));
         
+        Id = Guid.NewGuid();
         Name = name;
         Email = email;
         Role = role;

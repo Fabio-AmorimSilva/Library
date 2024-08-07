@@ -1,4 +1,6 @@
-﻿namespace Library.Application.Commands.Book.UpdateBookLibrary;
+﻿using Library.Core.Result;
+
+namespace Library.Application.Commands.Book.UpdateBookLibrary;
 
 public class UpdateBookLibraryCommandHandler(LibraryContext context) : IRequestHandler<UpdateBookLibraryCommand, ResultResponse<Unit>>
 {

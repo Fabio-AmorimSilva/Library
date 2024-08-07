@@ -1,4 +1,6 @@
-﻿namespace Library.Application.Commands.Account.Login;
+﻿using Library.Core.Result;
+
+namespace Library.Application.Commands.Account.Login;
 
 public class LoginCommandHandler(
     LibraryContext context,

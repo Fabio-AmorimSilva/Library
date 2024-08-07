@@ -1,4 +1,6 @@
-﻿namespace Library.Application.Commands.Library.CreateLibrary;
+﻿using Library.Core.Result;
+
+namespace Library.Application.Commands.Library.CreateLibrary;
 
 public class CreateLibraryCommandHandler(LibraryContext context) : IRequestHandler<CreateLibraryCommand, ResultResponse<Guid>>
 {

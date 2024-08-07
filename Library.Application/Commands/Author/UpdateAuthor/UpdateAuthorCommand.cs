@@ -1,4 +1,6 @@
-﻿namespace Library.Application.Commands.Author.UpdateAuthor;
+﻿using Library.Core.Result;
+
+namespace Library.Application.Commands.Author.UpdateAuthor;
 
 public sealed record UpdateAuthorCommand(
     Guid AuthorId, 

@@ -1,3 +1,5 @@
-﻿namespace Library.Application.Commands.Book.UpdateBookAuthor;
+﻿using Library.Core.Result;
+
+namespace Library.Application.Commands.Book.UpdateBookAuthor;
 
 public sealed record UpdateBookAuthorCommand(Guid AuthorId, Guid BookId) : IRequest<ResultResponse<Unit>>;
