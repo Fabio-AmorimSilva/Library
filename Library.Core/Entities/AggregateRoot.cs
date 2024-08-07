@@ -1,9 +1,7 @@
 ﻿namespace Library.Core.Entities;
 
-public class AggregateRoot
+public class AggregateRoot : BaseEntity
 {
-    public Guid Id { get; init; } = Guid.NewGuid();
-    
     private readonly List<DomainEvent> _domainEvents = [];
 
     [NotMapped]

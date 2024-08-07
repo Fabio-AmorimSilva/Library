@@ -1,6 +1,6 @@
 ﻿namespace Library.Infrastructure.Interceptors;
 
-public class AuditableEntityInterceptor(string userId) : SaveChangesInterceptor
+public class AuditableEntityInterceptor(string? userId = null) : SaveChangesInterceptor
 {
     public override ValueTask<InterceptionResult<int>> SavingChangesAsync(
         DbContextEventData eventData,
@@ -29,7 +29,8 @@ public class AuditableEntityInterceptor(string userId) : SaveChangesInterceptor
         foreach (var entity in createdEntities)
         {
             entity.Entity.CreatedAt = DateTime.Now;
-            entity.Entity.CreatedBy = Guid.Parse(userId);
+            if (userId != null) 
+                entity.Entity.CreatedBy = Guid.Parse(userId);
         }
     }
 
