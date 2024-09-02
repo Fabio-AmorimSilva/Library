@@ -1,6 +1,6 @@
 ﻿namespace Library.Domain.Entities;
 
-public class Author : BaseEntity
+public class Author : Entity
 {
     public const int NameMaxLength = 80;
     public const int CountryMaxLength = 80;

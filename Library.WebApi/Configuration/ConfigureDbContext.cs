@@ -1,4 +1,6 @@
-﻿namespace Library.WebApi.Configuration;
+﻿using Library.Infrastructure.Context;
+
+namespace Library.WebApi.Configuration;
 
 public static class ConfigureDbContext
 {
@@ -8,7 +10,7 @@ public static class ConfigureDbContext
         builder.Services.AddScoped<ISaveChangesInterceptor, AuditEntityInterceptor>();
         builder.Services.AddScoped<RequestUserService>();
         
-        builder.Services.AddDbContext<BaseContext>((sp, options) =>
+        builder.Services.AddDbContext<ApplicationDbContext>((sp, options) =>
         {
             var requestUserService = sp.GetRequiredService<RequestUserService>();
             var userId = requestUserService.GetUserId();

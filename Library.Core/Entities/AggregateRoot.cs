@@ -1,6 +1,6 @@
 ﻿namespace Library.Core.Entities;
 
-public class AggregateRoot : BaseEntity
+public class AggregateRoot : Entity
 {
     private readonly List<DomainEvent> _domainEvents = [];
 

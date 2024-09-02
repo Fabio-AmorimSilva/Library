@@ -10,7 +10,6 @@ global using Library.Application.Services;
 global using Library.Domain.Entities;
 global using Library.Infrastructure;
 global using Library.WebApi.Configuration;
-global using Library.Infrastructure.Base;
 global using Library.WebApi.Filters.Exceptions;
 global using Library.WebApi.Utils;
 global using MediatR;

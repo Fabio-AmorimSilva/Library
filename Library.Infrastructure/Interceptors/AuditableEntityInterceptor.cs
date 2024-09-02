@@ -23,7 +23,7 @@ public class AuditableEntityInterceptor(string? userId = null) : SaveChangesInte
             return;
 
         var createdEntities = context.ChangeTracker
-            .Entries<BaseEntity>()
+            .Entries<Entity>()
             .Where(e => e.State == EntityState.Added);
         
         foreach (var entity in createdEntities)
@@ -43,7 +43,7 @@ public class AuditableEntityInterceptor(string? userId = null) : SaveChangesInte
             return;
 
         var modifiedEntities = context.ChangeTracker
-            .Entries<BaseEntity>()
+            .Entries<Entity>()
             .Where(e => e.State == EntityState.Modified);
 
         foreach (var entity in modifiedEntities)

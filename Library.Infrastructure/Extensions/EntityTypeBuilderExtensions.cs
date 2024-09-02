@@ -10,28 +10,28 @@ public static class EntityTypeBuilderExtensions
     
     private static void TryConfigureEntityBase(this EntityTypeBuilder builder)
     {
-        if (builder.Metadata.ClrType.IsAssignableTo<BaseEntity>())
+        if (builder.Metadata.ClrType.IsAssignableTo<Entity>())
             return;
 
         builder
-            .HasKey(nameof(BaseEntity.Id));
+            .HasKey(nameof(Entity.Id));
 
         builder
-            .Property(nameof(BaseEntity.Id))
+            .Property(nameof(Entity.Id))
             .ValueGeneratedNever();
         
         builder
-            .Property(nameof(BaseEntity.Id))
+            .Property(nameof(Entity.Id))
             .IsRequired(false);
     }
     
     private static void TryConfigureAuditableEntity(this EntityTypeBuilder builder)
     {
-        if (builder.Metadata.ClrType.IsAssignableTo<BaseEntity>())
+        if (builder.Metadata.ClrType.IsAssignableTo<Entity>())
             return;
 
         builder
-            .HasKey(nameof(BaseEntity.Id));
+            .HasKey(nameof(Entity.Id));
 
         builder
             .Property(nameof(IAuditableEntity.CreatedAt))

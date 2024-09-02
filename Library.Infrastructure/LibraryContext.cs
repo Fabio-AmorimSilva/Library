@@ -1,6 +1,8 @@
-﻿namespace Library.Infrastructure;
+﻿using Library.Infrastructure.Context;
 
-public class LibraryContext(DbContextOptions<BaseContext> options) : BaseContext(options)
+namespace Library.Infrastructure;
+
+public class LibraryContext(DbContextOptions<ApplicationDbContext> options) : ApplicationDbContext(options)
 {
     public DbSet<Author> Authors {  get; set; }
     public DbSet<Book> Books {  get; set; }
@@ -9,5 +11,7 @@ public class LibraryContext(DbContextOptions<BaseContext> options) : BaseContext
     public DbSet<Audit> Audits { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
-        => modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+    }
 }

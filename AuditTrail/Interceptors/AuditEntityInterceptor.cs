@@ -19,7 +19,7 @@ public class AuditEntityInterceptor: SaveChangesInterceptor
             return;
 
         var entries = context.ChangeTracker
-            .Entries<BaseEntity>()
+            .Entries<Entity>()
             .ToList();
 
         if (entries.Count != 0)

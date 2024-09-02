@@ -1,6 +1,6 @@
 ﻿namespace Library.Domain.Entities;
 
-public class LibraryUnit : BaseEntity
+public class LibraryUnit : Entity
 {
     public const int NameMaxLength = 80;
     public const int CityMaxLength = 80;
