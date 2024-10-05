@@ -1,15 +1,14 @@
-﻿using Library.Core.Result;
+﻿namespace Library.Application.Commands.Author.CreateAuthor;
 
-namespace Library.Application.Commands.Author.CreateAuthor;
-
-public class CreateAuthorCommandHandler(LibraryContext context) : IRequestHandler<CreateAuthorCommand, ResultResponse<Guid>>
+public class CreateAuthorCommandHandler(LibraryContext context)
+    : IRequestHandler<CreateAuthorCommand, ResultResponse<Guid>>
 {
     public async Task<ResultResponse<Guid>> Handle(CreateAuthorCommand request, CancellationToken cancellationToken)
     {
         var author = new Domain.Entities.Author(
-            name: request.Name,
-            country: request.Country,
-            birth: request.Birth
+            request.Name,
+            request.Country,
+            request.Birth
         );
 
         var authorNameAlreadyExists = await context.Authors

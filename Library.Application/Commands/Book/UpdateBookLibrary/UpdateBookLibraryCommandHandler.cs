@@ -1,10 +1,10 @@
-﻿using Library.Core.Result;
+﻿namespace Library.Application.Commands.Book.UpdateBookLibrary;
 
-namespace Library.Application.Commands.Book.UpdateBookLibrary;
-
-public class UpdateBookLibraryCommandHandler(LibraryContext context) : IRequestHandler<UpdateBookLibraryCommand, ResultResponse<Unit>>
+public class UpdateBookLibraryCommandHandler(LibraryContext context)
+    : IRequestHandler<UpdateBookLibraryCommand, ResultResponse<Unit>>
 {
-    public async Task<ResultResponse<Unit>> Handle(UpdateBookLibraryCommand request, CancellationToken cancellationToken)
+    public async Task<ResultResponse<Unit>> Handle(UpdateBookLibraryCommand request,
+        CancellationToken cancellationToken)
     {
         var library = await context.Libraries
             .Include(lu => lu.Books)
@@ -13,18 +13,18 @@ public class UpdateBookLibraryCommandHandler(LibraryContext context) : IRequestH
         if (library is null)
             return new NotFoundResponse<Unit>(ErrorMessages.NotFound<LibraryUnit>());
 
-        var book = library.GetBook(bookId: request.BookId);
-        
+        var book = library.GetBook(request.BookId);
+
         if (book is null)
             return new NotFoundResponse<Unit>(ErrorMessages.NotFound<Domain.Entities.Book>());
-        
+
         var result = book.UpdateLibrary(request.LibraryId);
 
         if (!result.Success)
             return new UnprocessableResponse<Unit>(result.Message);
 
         await context.SaveChangesAsync(cancellationToken);
-        
+
         return new NoContentResponse<Unit>();
     }
 }

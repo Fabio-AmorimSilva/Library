@@ -1,6 +1,4 @@
-﻿using Library.Core.Result;
-
-namespace Library.Application.Queries.Books.GetBook;
+﻿namespace Library.Application.Queries.Books.GetBook;
 
 public class GetBookQueryHandler(LibraryContext context)
     : IRequestHandler<GetBookQuery, ResultResponse<ResponseBookDto>>

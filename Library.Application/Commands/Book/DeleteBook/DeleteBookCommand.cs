@@ -1,6 +1,4 @@
-﻿using Library.Core.Result;
-
-namespace Library.Application.Commands.Book.DeleteBook;
+﻿namespace Library.Application.Commands.Book.DeleteBook;
 
 public sealed record DeleteBookCommand(
     Guid BookId,

@@ -1,6 +1,4 @@
-﻿using Library.Core.Result;
-
-namespace Library.Application.Queries.Author.GetAuthor;
+﻿namespace Library.Application.Queries.Author.GetAuthor;
 
 public class GetAuthorQueryHandler(LibraryContext context) : IRequestHandler<GetAuthorQuery, ResultResponse<ResponseAuthorDto>>
 {

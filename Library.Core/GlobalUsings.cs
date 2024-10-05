@@ -6,6 +6,7 @@ global using System.Reflection;
 global using FluentValidation;
 global using Library.Core.Entities.Interfaces;
 global using Library.Core.Events;
+global using Library.Core.Result;
 global using MediatR;
 global using Microsoft.Extensions.Logging;
 global using Polly;

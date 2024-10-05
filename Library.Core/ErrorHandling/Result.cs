@@ -5,7 +5,7 @@ public class Result
     public bool Success { get; }
     public string? Message { get; }
 
-    protected Result(bool success, string? message = null)
+    private Result(bool success, string? message = null)
     {
         Success = success;
         Message = message;

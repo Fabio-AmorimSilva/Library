@@ -1,5 +1,3 @@
-﻿using Library.Core.Result;
-
-namespace Library.Application.Commands.Book.UpdateBookLibrary;
+﻿namespace Library.Application.Commands.Book.UpdateBookLibrary;
 
 public sealed record UpdateBookLibraryCommand(Guid BookId, Guid LibraryId) : IRequest<ResultResponse<Unit>>;

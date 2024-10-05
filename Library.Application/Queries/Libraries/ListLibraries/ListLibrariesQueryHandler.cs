@@ -1,5 +1,4 @@
 ﻿using Library.Application.Dtos.Library;
-using Library.Core.Result;
 
 namespace Library.Application.Queries.Libraries.ListLibraries;
 

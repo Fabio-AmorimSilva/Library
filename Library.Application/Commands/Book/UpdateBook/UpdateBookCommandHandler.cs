@@ -1,6 +1,4 @@
-﻿using Library.Core.Result;
-
-namespace Library.Application.Commands.Book.UpdateBook;
+﻿namespace Library.Application.Commands.Book.UpdateBook;
 
 public class UpdateBookCommandHandler(LibraryContext context) : IRequestHandler<UpdateBookCommand, ResultResponse<Unit>>
 {
@@ -13,21 +11,21 @@ public class UpdateBookCommandHandler(LibraryContext context) : IRequestHandler<
         if (author is null)
             return new NotFoundResponse<Unit>(ErrorMessages.NotFound<Domain.Entities.Author>());
 
-        var book = author.GetBook(bookId: request.BookId);
+        var book = author.GetBook(request.BookId);
 
         if (book is null)
             return new NotFoundResponse<Unit>(ErrorMessages.NotFound<User>());
-        
+
         var result = book.UpdateBook(
-            title: request.Title, 
-            year: request.Year, 
-            pages: request.Pages, 
-            genre: request.Genre
+            request.Title,
+            request.Year,
+            request.Pages,
+            request.Genre
         );
 
         if (result is { Success: false, Message: not null })
             return new UnprocessableResponse<Unit>(result.Message);
-        
+
         await context.SaveChangesAsync(cancellationToken);
 
         return new NoContentResponse<Unit>();

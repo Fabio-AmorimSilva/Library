@@ -1,6 +1,4 @@
-﻿using Library.Core.Result;
-
-namespace Library.Application.Commands.Library.DeleteLibrary;
+﻿namespace Library.Application.Commands.Library.DeleteLibrary;
 
 public class DeleteLibraryCommandHandler(LibraryContext context)
     : IRequestHandler<DeleteLibraryCommand, ResultResponse<Unit>>

@@ -20,6 +20,7 @@ global using Library.Application.Dtos.Authors;
 global using Library.Application.Dtos.Books;
 global using Library.Core.Messages;
 global using Library.Core.Responses;
+global using Library.Core.Result;
 global using Library.Domain.DomainEvents;
 global using Library.Domain.Specifications.Authors;
 global using Microsoft.AspNetCore.Http;

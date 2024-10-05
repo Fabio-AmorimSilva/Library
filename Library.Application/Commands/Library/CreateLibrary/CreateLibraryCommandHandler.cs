@@ -1,14 +1,13 @@
-﻿using Library.Core.Result;
+﻿namespace Library.Application.Commands.Library.CreateLibrary;
 
-namespace Library.Application.Commands.Library.CreateLibrary;
-
-public class CreateLibraryCommandHandler(LibraryContext context) : IRequestHandler<CreateLibraryCommand, ResultResponse<Guid>>
+public class CreateLibraryCommandHandler(LibraryContext context)
+    : IRequestHandler<CreateLibraryCommand, ResultResponse<Guid>>
 {
     public async Task<ResultResponse<Guid>> Handle(CreateLibraryCommand request, CancellationToken cancellationToken)
     {
         var library = new LibraryUnit(
-            name: request.Name,
-            city: request.City
+            request.Name,
+            request.City
         );
 
         await context.Libraries.AddAsync(library, cancellationToken);

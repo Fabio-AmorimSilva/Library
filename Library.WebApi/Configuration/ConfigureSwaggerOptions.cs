@@ -1,12 +1,8 @@
 ﻿namespace Library.WebApi.Configuration;
 
-public class ConfigureSwaggerOptions: IConfigureNamedOptions<SwaggerGenOptions>
+public class ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider)
+    : IConfigureNamedOptions<SwaggerGenOptions>
 {
-    private readonly IApiVersionDescriptionProvider _provider;
-
-    public ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider)
-        => _provider = provider;
-    
     /// <summary>
     /// Configure each API discovered for Swagger Documentation
     /// </summary>
@@ -14,7 +10,7 @@ public class ConfigureSwaggerOptions: IConfigureNamedOptions<SwaggerGenOptions>
     public void Configure(SwaggerGenOptions options)
     {
         // add swagger document for every API version discovered
-        foreach (var description in _provider.ApiVersionDescriptions)
+        foreach (var description in provider.ApiVersionDescriptions)
         {
             options.SwaggerDoc(
                 description.GroupName,

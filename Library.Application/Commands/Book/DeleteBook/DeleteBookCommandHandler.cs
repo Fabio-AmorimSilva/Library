@@ -1,6 +1,4 @@
-﻿using Library.Core.Result;
-
-namespace Library.Application.Commands.Book.DeleteBook;
+﻿namespace Library.Application.Commands.Book.DeleteBook;
 
 public class DeleteBookCommandHandler(LibraryContext context) : IRequestHandler<DeleteBookCommand, ResultResponse<Unit>>
 {
@@ -13,13 +11,13 @@ public class DeleteBookCommandHandler(LibraryContext context) : IRequestHandler<
         if (author is null)
             return new NotFoundResponse<Unit>(ErrorMessages.NotFound<Domain.Entities.Author>());
 
-        var book = author.GetBook(bookId: request.BookId);
-        
+        var book = author.GetBook(request.BookId);
+
         if (book is null)
             return new NotFoundResponse<Unit>(ErrorMessages.NotFound<Domain.Entities.Book>());
 
-        author.DeleteBook(book: book);
-        
+        author.DeleteBook(book);
+
         await context.SaveChangesAsync(cancellationToken);
 
         return new NoContentResponse<Unit>();

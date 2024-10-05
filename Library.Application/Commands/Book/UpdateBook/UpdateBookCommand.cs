@@ -1,6 +1,4 @@
-﻿using Library.Core.Result;
-
-namespace Library.Application.Commands.Book.UpdateBook;
+﻿namespace Library.Application.Commands.Book.UpdateBook;
 
 public sealed record UpdateBookCommand(
     Guid BookId,

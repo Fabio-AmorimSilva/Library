@@ -1,8 +1,6 @@
-﻿using Library.Core.Result;
+﻿namespace Library.Application.Commands.Account.Login;
 
-namespace Library.Application.Commands.Account.Login;
-
-public class LoginCommandHandler(
+public sealed class LoginCommandHandler(
     LibraryContext context,
     TokenService tokenService
 ) : IRequestHandler<LoginCommand, ResultResponse<string>>

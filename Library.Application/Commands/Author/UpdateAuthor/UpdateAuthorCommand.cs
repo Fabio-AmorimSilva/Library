@@ -1,10 +1,8 @@
-﻿using Library.Core.Result;
-
-namespace Library.Application.Commands.Author.UpdateAuthor;
+﻿namespace Library.Application.Commands.Author.UpdateAuthor;
 
 public sealed record UpdateAuthorCommand(
-    Guid AuthorId, 
-    string Name, 
-    string Country, 
+    Guid AuthorId,
+    string Name,
+    string Country,
     DateTime Birth
 ) : IRequest<ResultResponse<Unit>>;

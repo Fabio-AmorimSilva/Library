@@ -29,8 +29,7 @@ public class AuditableEntityInterceptor(string? userId = null) : SaveChangesInte
         foreach (var entity in createdEntities)
         {
             entity.Entity.CreatedAt = DateTime.Now;
-            if (userId != null) 
-                entity.Entity.CreatedBy = Guid.Parse(userId);
+            entity.Entity.CreatedBy = Guid.Parse(userId);
         }
     }
 

@@ -1,6 +1,3 @@
 ﻿namespace Library.Core.Events;
 
-public class DomainEvent : INotification
-{
-    
-}
+public class DomainEvent : INotification;

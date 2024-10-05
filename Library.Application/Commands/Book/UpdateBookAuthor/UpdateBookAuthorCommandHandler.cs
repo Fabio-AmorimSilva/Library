@@ -1,8 +1,7 @@
-﻿using Library.Core.Result;
+﻿namespace Library.Application.Commands.Book.UpdateBookAuthor;
 
-namespace Library.Application.Commands.Book.UpdateBookAuthor;
-
-public class UpdateBookAuthorCommandHandler(LibraryContext context) : IRequestHandler<UpdateBookAuthorCommand, ResultResponse<Unit>>
+public class UpdateBookAuthorCommandHandler(LibraryContext context)
+    : IRequestHandler<UpdateBookAuthorCommand, ResultResponse<Unit>>
 {
     public async Task<ResultResponse<Unit>> Handle(UpdateBookAuthorCommand request, CancellationToken cancellationToken)
     {
@@ -13,18 +12,18 @@ public class UpdateBookAuthorCommandHandler(LibraryContext context) : IRequestHa
         if (author is null)
             return new NotFoundResponse<Unit>(ErrorMessages.NotFound<Domain.Entities.Author>());
 
-        var book = author.GetBook(bookId: request.BookId);
-            
+        var book = author.GetBook(request.BookId);
+
         if (book is null)
             return new NotFoundResponse<Unit>(ErrorMessages.NotFound<Domain.Entities.Book>());
-        
+
         var result = book.UpdateAuthor(request.AuthorId);
 
         if (!result.Success)
             return new UnprocessableResponse<Unit>(result.Message);
 
         await context.SaveChangesAsync(cancellationToken);
-            
+
         return new NoContentResponse<Unit>();
     }
 }

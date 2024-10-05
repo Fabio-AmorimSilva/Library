@@ -7,7 +7,7 @@ public class UpdateBookLibraryCommandValidator : AbstractValidator<UpdateBookLib
         RuleFor(command => command.LibraryId)
             .NotEmpty()
             .WithMessage(ErrorMessages.CannotBeEmpty(nameof(UpdateBookLibraryCommand.LibraryId)));
-        
+
         RuleFor(command => command.BookId)
             .NotEmpty()
             .WithMessage(ErrorMessages.CannotBeEmpty(nameof(UpdateBookLibraryCommand.BookId)));

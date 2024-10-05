@@ -1,9 +1,7 @@
-﻿using Library.Core.Result;
-
-namespace Library.Application.Commands.Library.UpdateLibrary;
+﻿namespace Library.Application.Commands.Library.UpdateLibrary;
 
 public sealed record UpdateLibraryCommand(
-    Guid LibraryUnitId, 
-    string Name, 
+    Guid LibraryUnitId,
+    string Name,
     string City
 ) : IRequest<ResultResponse<Unit>>;

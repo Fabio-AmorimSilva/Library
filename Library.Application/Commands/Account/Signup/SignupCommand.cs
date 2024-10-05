@@ -1,6 +1,4 @@
-﻿using Library.Core.Result;
-
-namespace Library.Application.Commands.Account.Signup;
+﻿namespace Library.Application.Commands.Account.Signup;
 
 public sealed record SignupCommand(
     string Name,
