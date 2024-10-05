@@ -12,7 +12,7 @@ public class BookController(IMediator mediator) : BaseController(mediator)
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<ResultResponse<IEnumerable<Book>>>> Get()
     {
-        var result = await _mediator.Send(new ListBooksQuery());
+        var result = await Mediator.Send(new ListBooksQuery());
         return Ok(result);
     }
 
@@ -22,7 +22,7 @@ public class BookController(IMediator mediator) : BaseController(mediator)
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> GetById([FromRoute] Guid bookId)
     {
-        var result = await _mediator.Send(new GetBookQuery(bookId));
+        var result = await Mediator.Send(new GetBookQuery(bookId));
         return Ok(result);
     }
 
@@ -32,7 +32,7 @@ public class BookController(IMediator mediator) : BaseController(mediator)
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<ActionResult<Guid>> Post([FromBody] CreateBookCommand command)
     {
-        var result = await _mediator.Send(command);
+        var result = await Mediator.Send(command);
         return Created($"{result}", result.Data);
     }
 
@@ -42,7 +42,7 @@ public class BookController(IMediator mediator) : BaseController(mediator)
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<ActionResult> Put(Guid bookId, [FromBody] UpdateBookCommand command)
     {
-        await _mediator.Send(command);
+        await Mediator.Send(command);
         return NoContent();
     }
     
@@ -52,7 +52,7 @@ public class BookController(IMediator mediator) : BaseController(mediator)
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<ActionResult> UpdateBookAuthor(Guid bookId, [FromBody] UpdateBookAuthorCommand command)
     {
-        await _mediator.Send(command);
+        await Mediator.Send(command);
         return NoContent();
     }
     
@@ -62,7 +62,7 @@ public class BookController(IMediator mediator) : BaseController(mediator)
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<ActionResult> UpdateBookLibrary(Guid libraryId, Guid authorId, [FromBody] UpdateBookLibraryCommand command)
     {
-        await _mediator.Send(command);
+        await Mediator.Send(command);
         return NoContent();
     }
 
@@ -76,7 +76,7 @@ public class BookController(IMediator mediator) : BaseController(mediator)
     )
     {
         var command = new DeleteBookCommand(bookId, authorId);
-        await _mediator.Send(command);
+        await Mediator.Send(command);
         return NoContent();
     }
 }

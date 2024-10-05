@@ -1,6 +1,4 @@
-﻿using Library.Core.Result;
-
-namespace Library.WebApi.Controllers;
+﻿namespace Library.WebApi.Controllers;
 
 [ApiController]
 [Authorize]
@@ -12,7 +10,7 @@ public class AuthorController(IMediator mediator) : BaseController(mediator)
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<ResultResponse<IEnumerable<Author>>>> Get()
     {
-        var result = await _mediator.Send(new ListAuthorsQuery());
+        var result = await Mediator.Send(new ListAuthorsQuery());
         return Ok(result);
     }
 
@@ -21,7 +19,7 @@ public class AuthorController(IMediator mediator) : BaseController(mediator)
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ResultResponse<Author>>> GetById(Guid authorId)
     {
-        var result = await _mediator.Send(new GetAuthorQuery(authorId));
+        var result = await Mediator.Send(new GetAuthorQuery(authorId));
         return Ok(result);
     }
 
@@ -31,7 +29,7 @@ public class AuthorController(IMediator mediator) : BaseController(mediator)
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<ActionResult<Guid>> Post([FromBody] CreateAuthorCommand command)
     {
-        var result = await _mediator.Send(command);
+        var result = await Mediator.Send(command);
         return Created($"{result.Data}", result);
     }
 
@@ -41,7 +39,7 @@ public class AuthorController(IMediator mediator) : BaseController(mediator)
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<ActionResult> Put(Guid authorId, [FromBody] UpdateAuthorCommand command)
     {
-        await _mediator.Send(command);
+        await Mediator.Send(command);
         return NoContent();
     }
 
@@ -52,7 +50,7 @@ public class AuthorController(IMediator mediator) : BaseController(mediator)
     public async Task<ActionResult> Delete(Guid authorId)
     {
         var command = new DeleteAuthorCommand(authorId);
-        await _mediator.Send(command);
+        await Mediator.Send(command);
         return NoContent();
     }
 }

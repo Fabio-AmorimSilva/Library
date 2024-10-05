@@ -8,7 +8,7 @@ public static class ConfigureAuthentication
         services.Configure<JwtConfigurationSettings>(settings);
 
         var appsSettings = settings.Get<JwtConfigurationSettings>();
-        var key = Encoding.ASCII.GetBytes(appsSettings?.JwtKey);
+        var key = Encoding.ASCII.GetBytes(appsSettings?.JwtKey!);
 
         services.AddAuthentication(options =>
         {

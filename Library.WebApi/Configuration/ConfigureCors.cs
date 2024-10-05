@@ -6,8 +6,8 @@ public static class ConfigureCors
     {
         builder.Services.AddCors(options =>
         {
-            options.AddPolicy("Development", builder => 
-                builder
+            options.AddPolicy("Development", policyBuilder => 
+                policyBuilder
                     .AllowAnyOrigin()
                     .AllowAnyMethod()
                     .AllowAnyMethod()

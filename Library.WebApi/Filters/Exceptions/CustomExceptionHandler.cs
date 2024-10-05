@@ -1,6 +1,6 @@
 ﻿namespace Library.WebApi.Filters.Exceptions;
 
-public class CustomExceptionHandler : IExceptionHandler
+public sealed class CustomExceptionHandler : IExceptionHandler
 {
     public async ValueTask<bool> TryHandleAsync(
         HttpContext httpContext, 

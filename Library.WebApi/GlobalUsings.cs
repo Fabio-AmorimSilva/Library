@@ -51,3 +51,4 @@ global using Microsoft.Extensions.DependencyInjection.Extensions;
 global using Library.Infrastructure.Interceptors;
 global using Microsoft.AspNetCore.Diagnostics;
 global using Microsoft.EntityFrameworkCore.Diagnostics;
+global using Library.Core.Result;

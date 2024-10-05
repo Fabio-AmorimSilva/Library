@@ -10,7 +10,7 @@ public class LibraryController(IMediator mediator) : BaseController(mediator)
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> Get()
     {
-        var result = await _mediator.Send(new ListLibrariesQuery());
+        var result = await Mediator.Send(new ListLibrariesQuery());
         return Ok(result);
     }
 
@@ -20,7 +20,7 @@ public class LibraryController(IMediator mediator) : BaseController(mediator)
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> GetById([FromRoute] Guid libraryId)
     {
-        var result = await _mediator.Send(new GetLibraryQuery(libraryId));
+        var result = await Mediator.Send(new GetLibraryQuery(libraryId));
         return Ok(result);
     }
 
@@ -29,7 +29,7 @@ public class LibraryController(IMediator mediator) : BaseController(mediator)
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> Post([FromBody] CreateLibraryCommand command)
     {
-        var result = await _mediator.Send(command);
+        var result = await Mediator.Send(command);
         return Created($"{result.Data}", result);
     }
 
@@ -39,7 +39,7 @@ public class LibraryController(IMediator mediator) : BaseController(mediator)
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> Put(Guid libraryId, [FromBody] UpdateLibraryCommand command)
     {
-        await _mediator.Send(command);
+        await Mediator.Send(command);
         return NoContent();
     }
 
@@ -50,7 +50,7 @@ public class LibraryController(IMediator mediator) : BaseController(mediator)
     public async Task<IActionResult> Delete([FromRoute] Guid libraryId)
     {
         var command = new DeleteLibraryCommand(libraryId);
-        await _mediator.Send(command);
+        await Mediator.Send(command);
         return NoContent();
     }
 }

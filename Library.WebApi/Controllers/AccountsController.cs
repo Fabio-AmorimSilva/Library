@@ -1,6 +1,4 @@
-﻿using Library.Core.Result;
-
-namespace Library.WebApi.Controllers;
+﻿namespace Library.WebApi.Controllers;
 
 [ApiController]
 [ApiVersion("2.0")]
@@ -16,7 +14,7 @@ public class AccountsController(
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<ActionResult> Signup([FromBody] SignupCommand command)
     {
-        var result = await _mediator.Send(command);
+        var result = await Mediator.Send(command);
         return Created($"{result}", result);
     }
 
@@ -27,7 +25,7 @@ public class AccountsController(
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<ActionResult<ResultResponse<string>>> Login([FromBody] LoginCommand command)
     {
-        var result = await _mediator.Send(command);
+        var result = await Mediator.Send(command);
         logger.LogInformation("Login is an success!!");
         return Ok(result);
     }
